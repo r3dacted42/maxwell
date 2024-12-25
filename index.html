@@ -1,17 +1,22 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maxwell (dingus)</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <canvas id="main-canvas"></canvas>
-    <audio id="bgm" loop autoplay>
-      <source src="/audio/Mr. Weebl - Stock Market.mp3" type="audio/mpeg">
-    </audio>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maxwell (dingus)</title>
+</head>
+
+<body>
+  <canvas id="main-canvas"></canvas>
+  <audio id="bgm" loop>
+    <source src="/audio/Mr. Weebl - Stock Market.mp3" type="audio/mpeg">
+  </audio>
+  <button id="bgm-control"></button>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
