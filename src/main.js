@@ -14,7 +14,7 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
-camera.position.set( 0, 15, 25 );
+camera.position.set( 0, 10, 15 );
 
 renderer.render( scene, camera );
 
@@ -24,8 +24,9 @@ let model;
 loader.load( "model/maxwell.gltf", 
   (gltf) => {
     model = gltf.scene;
-    const scale = 0.5;
+    const scale = 0.3;
     model.scale.set( scale, scale, scale );
+    model.position.set( 0, -3, 0 );
     scene.add( model );
   },
   (xhr) => {
@@ -58,4 +59,3 @@ window.addEventListener( 'resize', () => {
 } );
 
 animate();
-
