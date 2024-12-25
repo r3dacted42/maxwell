@@ -60,6 +60,8 @@ $(window).resize(() => {
 
 animate();
 
+if (document.visibilityState === 'visible') $('#bgm')[0].play();
+
 $(document).on('visibilitychange', () => {
   if (document.visibilityState === 'hidden') {
     $('#bgm')[0].pause();
