@@ -3,3 +3,20 @@
   top: 0;
   left: 0;
 }
+
+#gh-link {
+  position: fixed;
+  top: 4px;
+  right: 4px;
+  opacity: 0.25;
+  transition: opacity 50ms ease-in-out;
+
+  svg {
+    height: 32px;
+    aspect-ratio: 1;
+  }
+}
+
+#gh-link:hover {
+  opacity: 0.75;
+}

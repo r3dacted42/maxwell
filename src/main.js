@@ -7,6 +7,7 @@ const scene = new THREE.Scene();
 
 let aspect = window.innerWidth / window.innerHeight;
 const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 20000);
+camera.position.set(0, 7, 15);
 
 const renderer = new THREE.WebGLRenderer({
   antialias: true,
@@ -15,13 +16,14 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.set(0, 7, 15);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 renderer.render(scene, camera);
 
 new THREE.TextureLoader().load("image/gm_construct.png",
   (texture) => {
-    const skySphereGeometry = new THREE.SphereGeometry(1000, 100, 100);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    const skySphereGeometry = new THREE.SphereGeometry(10000, 100, 100);
     const skySphereMaterial = new THREE.MeshBasicMaterial({
       map: texture,
     });
