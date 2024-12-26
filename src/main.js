@@ -6,9 +6,10 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 const scene = new THREE.Scene();
 
 let aspect = window.innerWidth / window.innerHeight;
-const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 20000);
 
 const renderer = new THREE.WebGLRenderer({
+  antialias: true,
   canvas: $('#main-canvas')[0],
 });
 
@@ -18,22 +19,39 @@ camera.position.set(0, 7, 15);
 
 renderer.render(scene, camera);
 
-const loader = new GLTFLoader();
+new THREE.TextureLoader().load("image/gm_construct.png",
+  (texture) => {
+    const skySphereGeometry = new THREE.SphereGeometry(1000, 100, 100);
+    const skySphereMaterial = new THREE.MeshBasicMaterial({
+      map: texture,
+    });
+    skySphereMaterial.side = THREE.BackSide;
+    const skySphereMesh = new THREE.Mesh(skySphereGeometry, skySphereMaterial);
+    scene.add(skySphereMesh);
+  },
+  (xhr) => {
+    console.log('texture ' + (xhr.loaded / xhr.total * 100) + '% loaded');
+  },
+  (err) => {
+    console.log('error while loading texture: ', err);
+  }
+);
+
 let model;
 
-loader.load("model/maxwell.gltf",
-  (gltf) => {
-    model = gltf.scene;
+new GLTFLoader().load("model/maxwell.gltf",
+  (dingus) => {
+    model = dingus.scene;
     const scale = 0.3;
     model.scale.set(scale, scale, scale);
     model.position.set(0, -3, 0);
     scene.add(model);
   },
   (xhr) => {
-    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+    console.log('dingus ' + (xhr.loaded / xhr.total * 100) + '% loaded');
   },
   (err) => {
-    console.log('error while loading gltf: ', err);
+    console.log('error while loading dingus: ', err);
   }
 );
 
@@ -43,12 +61,12 @@ scene.add(light);
 const orbitalControls = new OrbitControls(camera, renderer.domElement);
 
 function animate() {
-  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
 
-  if (model) model.rotation.y -= 0.007;
+  if (model) model.rotation.y -= 0.01;
   orbitalControls.update();
 
-  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
 }
 
 $(window).resize(() => {
@@ -60,10 +78,10 @@ $(window).resize(() => {
 
 animate();
 
-$(document).on('visibilitychange pointerdown', () => {
-  if (document.visibilityState === 'hidden') {
-    $('#bgm')[0].pause();
-  } else {
-    $('#bgm')[0].play();
-  }
+$(document).on('pointerdown', () => {
+  $('#bgm')[0].play();
+});
+
+$(document).on('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') $('#bgm')[0].pause();
 });
