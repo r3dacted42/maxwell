@@ -9,6 +9,6 @@ gm_construct background: [Alexander (steam)](https://steamcommunity.com/sharedfi
 original meme music: [Mr. Weebl (youtube)](https://youtu.be/3W-EkANZX8g)  
 github icon: [iconmonstr (website)](https://iconmonstr.com/github-3-svg/)
 
-<video src="https://raw.githubusercontent.com/r3dacted42/maxwell/refs/heads/master/public/dingus.webm" loop>
+![preview](https://raw.githubusercontent.com/r3dacted42/maxwell/refs/heads/master/public/dingus.webp)
 
 all credits go to respective owners.
